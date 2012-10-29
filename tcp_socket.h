@@ -19,12 +19,13 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef __PRACTICALSOCKET_INCLUDED__
-#define __PRACTICALSOCKET_INCLUDED__
+#ifndef _TCP_SOCKET_H_
+#define _TCP_SOCKET_H_
 
-#include "socket.h"
 #include <string>            // For string
 #include <exception>         // For exception class
+
+#include "socket.h"
 
 using namespace std;
 
@@ -139,4 +140,4 @@ class TCPServerSocket : public Socket {
     void setListen(int queueLen) throw(SocketException);
 };
 
-#endif
+#endif // _TCP_SOCKET_H_

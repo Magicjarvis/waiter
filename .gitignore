@@ -1,3 +1,6 @@
+# binaries
+waiter
+
 # Compiled Object files
 *.slo
 *.lo
@@ -10,3 +13,7 @@
 *.lai
 *.la
 *.a
+
+# Swap files
+*.un~
+*.swp

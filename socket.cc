@@ -19,8 +19,6 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include "socket.h"
-
 #include <sys/types.h>       // For data types
 #include <sys/socket.h>      // For socket(), connect(), send(), and recv()
 #include <netdb.h>           // For gethostbyname()
@@ -31,9 +29,9 @@
 #include <cstring>             // for strerror
 #include <errno.h>             // For errno
 
-using namespace std;
+#include "socket.h"
 
-// SocketException Code
+using namespace std;
 
 SocketException::SocketException(const string &message, bool inclSysMsg)
   throw() : userMessage_(message) {
@@ -134,7 +132,5 @@ unsigned short Socket::resolveService(const string &service,
   if ((serv = getservbyname(service.c_str(), protocol.c_str())) == NULL) {
     return atoi(service.c_str());  /* Service is port number */
   }
-  else {
-    return ntohs(serv->s_port);    /* Found port (network byte order) by name */
-  }
+  return ntohs(serv->s_port);    /* Found port (network byte order) by name */
 }

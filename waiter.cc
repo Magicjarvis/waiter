@@ -6,7 +6,6 @@ int main() {
   const int MAX_WAIT = 5;
   TCPServerSocket socket("localhost", 4000, MAX_WAIT);
 
-
   char buffer[1000];
   while (true) {
 
@@ -14,7 +13,7 @@ int main() {
     TCPSocket *client = socket.accept();
     std::cout << client->getForeignAddress() << ":" << client->getForeignPort() << " Connected" << std::endl;
     client->recv(buffer, 1000);
-    client->send("HTTP/1.1 200 OK\nDate: Mon, 29 Oct 2012 09:04:06 GMT\nExpires: -1\nCache-Control: private, max-age=0\nContent-Type: text/html; charset=ISO-8859-1\n\nfoo", 153);
+    client->send("HTTP/1.1 200 OK\nContent-Type: text/html; charset=ISO-8859-1\n\nHello World!", 75);
     delete client;
     std::cout << buffer << std::endl;
 

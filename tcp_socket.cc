@@ -19,14 +19,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include "tcp_socket.h"
-
 #include <sys/types.h>       // For data types
 #include <sys/socket.h>      // For socket(), connect(), send(), and recv()
 #include <netdb.h>           // For gethostbyname()
 #include <arpa/inet.h>       // For inet_addr()
 #include <unistd.h>          // For close()
 #include <netinet/in.h>      // For sockaddr_in
+
+#include "tcp_socket.h"
 
 typedef void raw_type;       // Type used for raw data on this platform
 
@@ -37,12 +37,11 @@ using namespace std;
 
 // TCPSocket Code
 
-TCPSocket::TCPSocket(int type, int protocol)  
-  throw(SocketException) : Socket(type, protocol) {
-  }
-
-TCPSocket::TCPSocket(int newConnSD) : Socket(newConnSD) {
+TCPSocket::TCPSocket(int type, int protocol) throw(SocketException) 
+  : Socket(type, protocol) {
 }
+
+TCPSocket::TCPSocket(int newConnSD) : Socket(newConnSD) {}
 
 static void fillAddr(const string &address, unsigned short port, 
     sockaddr_in &addr) {
@@ -110,8 +109,6 @@ unsigned short TCPSocket::getForeignPort() throw(SocketException) {
   return ntohs(addr.sin_port);
 }
 
-// TCPSocket Code
-
 TCPSocket::TCPSocket() 
   throw(SocketException) : TCPSocket(SOCK_STREAM, 
       IPPROTO_TCP) {
@@ -121,11 +118,6 @@ TCPSocket::TCPSocket(const string &foreignAddress, unsigned short foreignPort)
   throw(SocketException) : TCPSocket(SOCK_STREAM, IPPROTO_TCP) {
     connect(foreignAddress, foreignPort);
   }
-
-//TCPSocket::TCPSocket(int newConnSD) : Socket(newConnSD) {
-//}
-
-// TCPServerSocket Code
 
 TCPServerSocket::TCPServerSocket(unsigned short localPort, int queueLen) 
   throw(SocketException) : Socket(SOCK_STREAM, IPPROTO_TCP) {
