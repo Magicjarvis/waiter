@@ -10,8 +10,9 @@ Simple webserver using BSD Sockets. (Current C++ Wrapper based heavily on
 Development has only just begun! Right now, please pay this no mind.
 
 ## Build and Run
-  $ git clone git@github.com:Magicjarvis/waiter.git
-  $ cd waiter
-  $ make
+
+    $ git clone git@github.com:Magicjarvis/waiter.git
+    $ cd waiter
+    $ make
 
 Right now it's only a "Hello World" on localhost:4000
