@@ -8,14 +8,14 @@ Simple webserver using BSD Sockets. (Current C++ Wrapper based heavily on http:/
 
 Development has only just begun! Right now, please pay this no mind.
 
-## Build and Run
+## Build Instructions
 
     $ git clone git@github.com:Magicjarvis/waiter.git
-    $ cd waiter
-    $ make
+    $ sudo make install
+    $ sudo ldconfig
 
 ## Sample main.cc
-    $ #include "waiter.h"
+    $ #include <waiter.h>
     $
     $ using waiter::server;
     $ using waiter::http::response;
