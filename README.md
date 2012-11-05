@@ -43,3 +43,7 @@ Development has only just begun! Right now, please pay this no mind.
     $ 
     $   serv.listen(port);
     $ }
+
+## Running Instructions
+    $ g++ -std=c++11 main.cc -o my_server -lwaiter
+    $ ./my_server 3000
