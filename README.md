@@ -14,11 +14,9 @@ Development has only just begun! Right now, please pay this no mind.
     $ cd waiter
     $ make
 
-Right now it's only a "Hello World" on localhost:4000
-#include "waiter.h"
-
 ## Sample main.cc
-
+    $ #include "waiter.h"
+    $
     $ using waiter::server;
     $ using waiter::http::response;
     $ using waiter::http::request;
