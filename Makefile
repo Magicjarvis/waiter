@@ -6,13 +6,13 @@ OPTFLAG = -O2
 DEBUGFLAG = -g
 
 # The CC and H files
-CCFILES = socket.cc tcp_socket.cc waiter.cc
-HFILES = socket.h tcp_socket.h
+CCFILES = socket.cc tcp_socket.cc waiter.cc http.cc main.cc
+HFILES = socket.h tcp_socket.h http.h
 
 PROGRAM = waiter
 
 run: $(PROGRAM)
-	./$(PROGRAM)
+	./$(PROGRAM) 3000
 
 $(PROGRAM): $(CCFILES)
 	$(CC) $(CFLAGS) $(OPTFLAG) $(CCFILES) -o $@
