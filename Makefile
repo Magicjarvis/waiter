@@ -26,4 +26,5 @@ uninstall:
 		 /usr/local/include/http.h
 
 clean:
-	rm *.o *.so
+	rm *.o *.so \
+    -r documentation

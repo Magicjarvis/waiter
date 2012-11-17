@@ -47,3 +47,10 @@ Development has only just begun! Right now, please pay this no mind.
 ## Running Instructions
     $ g++ -std=c++11 main.cc -o my_server -lwaiter
     $ ./my_server 3000
+
+## Documentation
+    generate documentation:
+    $ doxygen
+
+    remove documentation:
+    $ make clean
