@@ -22,6 +22,26 @@ vector<string> request::spaceSplit(std::string line) {
   return vals;
 }
 
+vector<string> request::getLines(string str) {                              
+  std::istringstream ss(str);                                                
+  vector<string> lines;                                                        
+  std::string line;
+  while (getline(ss, line)) {
+    lines.push_back(line); 
+  }
+  return lines;                                                                
+}    
+
+// better way of doing this? I don't like it; (friend?)
+std::ostream& operator<<(std::ostream &os, const request &req) {
+  os << "Method, Path, version" << req.method() << ", " << req.path() << "," << req.version() << std::endl;
+  std::unordered_map<std::string, std::string> fields = req.fields();
+  for (auto it = fields.begin(); it != fields.end(); ++it) {
+    os << it->first << " : " << it->second << std::endl; 
+  }
+  return os;
+}
+
 request request::reqFromString(string str_req) {
   unordered_map<string, string> field_map;
   vector<string> lines = getLines(str_req);
@@ -40,35 +60,18 @@ request request::reqFromString(string str_req) {
   
 }
 
-std::ostream& operator<<(std::ostream &os, const request &req) {
-  os << "Method, Path, version" << req.method() << ", " << req.path() << "," << req.version() << std::endl;
-  std::unordered_map<std::string, std::string> fields = req.fields();
-  for (auto it = fields.begin(); it != fields.end(); ++it) {
-    os << it->first << " : " << it->second << std::endl; 
-  }
-  return os;
-}
-
-//likely inefficient way of doing this
-vector<string> request::getLines(string str) {                              
-  std::istringstream ss(str);                                                
-  vector<string> lines;                                                        
-  std::string line;
-  while (getline(ss, line)) {
-    lines.push_back(line); 
-  }
-  return lines;                                                                
-}    
-
 request::request(string meth, string route, string ver,
     std::unordered_map<string, string> field_map) : fields_(field_map), method_(meth), path_(route), version_(ver) {}
 
 response::response() : response_stream_() {}
+
 void response::write(std::istream& s) {
   string str((std::istreambuf_iterator<char>(s)),
       std::istreambuf_iterator<char>());
   response_stream_ << str;
 }
+
+// rename? restructure? builder pattern?
 string response::generate() {
   return "HTTP/1.1 200 OK\nContent-Type: text/html; charset=utf-8\n\n"
     + response_stream_.str();

@@ -1,10 +1,16 @@
 #include <waiter.h>
+#include <iostream>
+
 
 using waiter::server;
 using waiter::http::response;
 using waiter::http::request;
 
-int main(int, char** argv) {
+int main(int argc, char** argv) {
+  if(argc != 2){
+    std::cout << "Usage - Please provide a port number" << std::endl;
+    return 0;
+  }
   std::stringstream ss(argv[1]);
   int port;
   ss >> port;

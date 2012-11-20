@@ -18,18 +18,14 @@ bool server::bound(string path) {
   return routes_.count(path) > 0;
 }
 
-string server::handle(http::request& req, string route) {
-  return routes_.at(route)(req);
-}
-
 void server::listen(int portNumber) {
   const int MAX_REQUEST_LEN = 1000;
   const int MAX_WAIT = 5;
+  // catch unable to connect?
   TCPServerSocket socket("localhost", portNumber, MAX_WAIT);
 
   char buffer[MAX_REQUEST_LEN];
   while (true) {
-
     std::cout << "Accepting Connections on " << socket.getLocalAddress() << ":" << socket.getLocalPort() << std::endl;
     TCPSocket *client = socket.accept();
     std::cout << client->getForeignAddress() << ":" << client->getForeignPort() << " Connected" << std::endl;
@@ -58,6 +54,10 @@ void server::listen(int portNumber) {
     delete client;
     std::cout << buffer << std::endl;
   }
+}
+
+string server::handle(http::request& req, string route) {
+  return routes_.at(route)(req);
 }
 
 }
