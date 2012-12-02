@@ -1,6 +1,8 @@
 # binaries
 waiter
 
+# Documentation
+docs/
 # Compiled Object files
 *.slo
 *.lo

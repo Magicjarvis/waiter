@@ -27,4 +27,4 @@ uninstall:
 
 clean:
 	rm *.o *.so \
-    -r documentation
+    -r docs
