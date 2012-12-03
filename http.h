@@ -90,11 +90,17 @@ class response {
     std::string generate();
 
     /**
+     *
+     */
+    void setContentType(std::string ext);
+
+    /**
      * fill response stream with content from an istream
      * @param s istream with content to be added to reponse_stream
      */
     void write(std::istream& s);
   private:
+    std::string content_type_;
     std::stringstream response_stream_;
 };
 

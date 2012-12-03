@@ -34,6 +34,12 @@ void server::listen(int portNumber) {
 
     //protect a bit from malformed paths
     std::string route = req.path();
+    size_t dot = route.find(".");
+    std::string ext = "";
+    std::cout << "location of . " << dot << std::endl;
+    if (dot != std::string::npos) {
+      ext = route.substr(dot + 1);
+    }
     if (route[0] == '/') route = route.substr(1);
 
     std::string resBody = "HTTP/1.1 404 Not Found\n\n";
@@ -45,6 +51,10 @@ void server::listen(int portNumber) {
 
       if (file.good()) {
         http::response res;
+        if (ext != "") {
+          std::cout << ext << std::endl;
+          res.setContentType(ext);
+        }
         res.write(file);
         resBody = res.generate();
       }

@@ -57,13 +57,13 @@ request request::reqFromString(string str_req) {
     field_map.emplace(entry[0], entry[1]); 
   }
   return request(method, path, version, field_map);
-  
+
 }
 
 request::request(string meth, string route, string ver,
     std::unordered_map<string, string> field_map) : fields_(field_map), method_(meth), path_(route), version_(ver) {}
 
-response::response() : response_stream_() {}
+response::response() : content_type_("text/html"),response_stream_() {}
 
 void response::write(std::istream& s) {
   string str((std::istreambuf_iterator<char>(s)),
@@ -71,9 +71,23 @@ void response::write(std::istream& s) {
   response_stream_ << str;
 }
 
+void response::setContentType(std::string ext) {
+  std::string type = "text/plain";
+  if (ext == "html") {
+    type = "text/html";
+  } else if (ext == "js") {
+    type = "text/javascript"; 
+  } else if (ext == "css") {
+    type = "text/css"; 
+  } else if (ext == "jpeg" || ext == "jpg" || ext == "png" || ext == "gif") {
+    type = "text/" + ext; 
+  }
+  content_type_ = type;
+}
+
 // rename? restructure? builder pattern?
 string response::generate() {
-  return "HTTP/1.1 200 OK\nContent-Type: text/html; charset=utf-8\n\n"
+  return "HTTP/1.1 200 OK\nContent-Type: "+content_type_+";\n\n"
     + response_stream_.str();
 }
 }
