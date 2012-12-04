@@ -36,7 +36,6 @@ void server::listen(int portNumber) {
     std::string route = req.path();
     size_t dot = route.find(".");
     std::string ext = "";
-    std::cout << "location of . " << dot << std::endl;
     if (dot != std::string::npos) {
       ext = route.substr(dot + 1);
     }
