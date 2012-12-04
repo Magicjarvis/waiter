@@ -25,6 +25,9 @@ uninstall:
 		 /usr/local/include/socket.h /usr/local/include/tcp_socket.h \
 		 /usr/local/include/http.h
 
+documentation:
+	doxygen
+
 clean:
 	rm *.o *.so \
     -r docs
