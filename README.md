@@ -4,7 +4,7 @@ waiter
 A simple (HTTP) server
 
 ## About
-Simple webserver using BSD Sockets. (Current C++ Wrapper based heavily on http://cs.ecs.baylor.edu/~donahoo/practical/CSockets/practical/)
+Simple webserver using BSD Sockets.
 
 Development has only just begun! Right now, please pay this no mind.
 
@@ -50,7 +50,7 @@ Development has only just begun! Right now, please pay this no mind.
 
 ## Documentation
     generate documentation:
-    $ doxygen
+    $ make documentation
 
     remove documentation:
     $ make clean
