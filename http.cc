@@ -80,7 +80,7 @@ void response::setContentType(std::string ext) {
   } else if (ext == "css") {
     type = "text/css"; 
   } else if (ext == "jpeg" || ext == "jpg" || ext == "png" || ext == "gif") {
-    type = "text/" + ext; 
+    type = "image/" + ext; 
   }
   content_type_ = type;
 }
